@@ -1,7 +1,7 @@
 \version "2.20.0"
 
 \header {
-  title = "Project"
+  title = "<Project>"
   subtitle = " " % a bit more space
   % composer = "J. S. Bach."
   % set tagline to false to remove the lilypond composing notice
@@ -56,10 +56,21 @@ alto = \relative c' {
     \bar"|."
 }
 
+tenorPianoVerse = \relative c {
+}
+
 tenor = \relative c' {
     \override Fingering.direction = #DOWN
-    %s2.*15 s2
-    \bar "|."
+    \repeat volta 5 {
+        \tenorPianoVerse
+    }
+    \alternative {
+        {
+        }
+        {
+        }
+    }
+    \bar"|."
 }
 
 su = \change Staff = "up"
@@ -123,13 +134,11 @@ pianoupper = \relative c'' {
     <<
         \new Voice {
             \voiceOne
-            \repeat volta 3 { \sopranoPiano }
+            \sopranoPiano
         }
         \new Voice {
             \voiceTwo
-            \repeat volta 3 {
-                \alto
-            }
+            \alto
         }
     >>
 }
@@ -141,15 +150,11 @@ pianolower = \relative c {
         \new Voice {
             \voiceOne
             %\autochange cis'
-            \repeat volta 3 {
-                \tenor
-            }
+            \tenor
         }
         \new Voice {
             \voiceTwo
-            \repeat volta 3 {
-                \bass
-            }
+            \bass
         }        %\voiceTwo \bass
     >>
 }
@@ -178,7 +183,7 @@ sopranostaff = \new Staff
 
 
 \book{
-    \bookOutputName "Blest are they - Piano"
+    \bookOutputName "<Project> - Piano"
     %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
     %#'((Y-offset . 2))
     \score {
