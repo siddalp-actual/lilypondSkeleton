@@ -1,7 +1,7 @@
 \version "2.20.0"
 
 \header {
-  title = "<Project>"
+  title = "{{cookiecutter.project}}"
   subtitle = " " % a bit more space
   % composer = "J. S. Bach."
   % set tagline to false to remove the lilypond composing notice
@@ -183,7 +183,7 @@ sopranostaff = \new Staff
 
 
 \book{
-    \bookOutputName "<Project> - Piano"
+    \bookOutputName "{{cookiecutter.project}} - Piano"
     %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
     %#'((Y-offset . 2))
     \score {
