@@ -12,6 +12,7 @@
 \include "../peteMacs.ly"  % useful functions
 
 timeAndKey = { \key aes \major \time 3/4 }
+bpm = 100
 
 sopranoVoiceRefrain = \relative c'' {
     %\partial 4 aes4
@@ -83,12 +84,12 @@ tf =
     #}
 )
 
-pianoBaseVerse = \relative c {
+bassPianoVerse = \relative c {
     \bar "||"
 }
 
 bass = \relative c {\repeat volta 5 {
-    \pianoBaseVerse
+    bassPianoVerse
     }
     \alternative {
         {  % 1 - 4
@@ -127,7 +128,7 @@ vFourLyrics = \lyrics {
 }
 
 pianoupper = \relative c'' {
-    \tempo 4 = 80
+    \tempo 4 = \bpm
 
     \clef treble
     \timeAndKey
@@ -213,7 +214,7 @@ sopranostaff = \new Staff
         \pianostaff
         >>
         \midi {
-            \tempo 4 = 75
+            \tempo 4 = \bpm
         }
     }
 }
