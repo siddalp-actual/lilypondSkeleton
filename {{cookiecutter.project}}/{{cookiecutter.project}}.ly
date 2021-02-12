@@ -58,6 +58,7 @@ alto = \relative c' {
 }
 
 tenorPianoVerse = \relative c {
+    \bar "||"
 }
 
 tenor = \relative c' {
@@ -89,7 +90,7 @@ bassPianoVerse = \relative c {
 }
 
 bass = \relative c {\repeat volta 5 {
-    bassPianoVerse
+        \bassPianoVerse
     }
     \alternative {
         {  % 1 - 4
