@@ -130,6 +130,9 @@ vFourLyrics = \lyrics {
 
 pianoupper = \relative c'' {
     \tempo 4 = \bpm
+    %\set Score.dynamicAbsoluteVolumeFunction = #myDynamics
+    \set midiPanPosition = #0.75
+    \set midiReverbLevel = #0
 
     \clef treble
     \timeAndKey
@@ -146,6 +149,8 @@ pianoupper = \relative c'' {
 }
 
 pianolower = \relative c {
+    \set midiPanPosition = #-0.75
+    \set midiReverbLevel = #0
     \clef bass
     \timeAndKey
     <<
@@ -162,12 +167,21 @@ pianolower = \relative c {
 }
 
 pianostaff =
+<<
+    \set PianoStaff.instrumentName = "Piano"
+
+    %\staffName "Piano"
+    \new Staff = "up"
     <<
-        \set PianoStaff.instrumentName = "Piano"
-        %\staffName "Piano"
-        \new Staff = "up" \pianoupper
-        \new Staff = "down" \pianolower
+        \set Staff.midiInstrument = "acoustic grand"
+        \pianoupper
     >>
+    \new Staff = "down"
+    <<
+        \set Staff.midiInstrument = "acoustic grand"
+        \pianolower
+    >>
+>>
 
 sopranostaff = \new Staff
     <<
@@ -210,6 +224,7 @@ sopranostaff = \new Staff
     }
     \score {
         \unfoldRepeats
+        %\articulate
         <<
         \new pianostaff
         \pianostaff
