@@ -13,6 +13,7 @@
 
 timeAndKey = { \key aes \major \time 3/4 }
 bpm = 100
+verses = 4
 
 sopranoVoiceRefrain = \relative c'' {
     %\partial 4 aes4
@@ -26,7 +27,7 @@ sopranoPianoVerse = \relative c' {
 
 voltaLast = \markup \text "Fine"
 sopranoPiano = \relative c'' {
-    \repeat volta 5 {
+    \repeat volta \verses {
         \sopranoPianoVerse
     }
     \alternative {
@@ -45,7 +46,7 @@ altoPianoVerse = \relative c ' {
 
 alto = \relative c' {
     \override Fingering.direction = #UP
-    \repeat volta 5 {
+    \repeat volta \verses {
         \altoPianoVerse
     }
     \alternative {
@@ -63,7 +64,7 @@ tenorPianoVerse = \relative c {
 
 tenor = \relative c' {
     \override Fingering.direction = #DOWN
-    \repeat volta 5 {
+    \repeat volta \verses {
         \tenorPianoVerse
     }
     \alternative {
@@ -89,7 +90,8 @@ bassPianoVerse = \relative c {
     \bar "||"
 }
 
-bass = \relative c {\repeat volta 5 {
+bass = \relative c {
+    \repeat volta \verses {
         \bassPianoVerse
     }
     \alternative {
