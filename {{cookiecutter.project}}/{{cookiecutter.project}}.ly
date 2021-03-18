@@ -41,7 +41,7 @@ sopranoPiano = \relative c'' {
     \bar "|."
 }
 
-altoPianoVerse = \relative c ' {
+altoPianoVerse = \relative c' {
     \bar "||"
 }
 
