@@ -59,6 +59,9 @@ alto = \relative c' {
     \bar"|."
 }
 
+su = \change Staff = "up"
+sd = \change Staff = "down"
+
 tenorPianoVerse = \relative c {
     \bar "||"
 }
@@ -77,8 +80,6 @@ tenor = \relative c' {
     \bar"|."
 }
 
-su = \change Staff = "up"
-sd = \change Staff = "down"
 
 tf =
 #(define-music-function (parser location f) (number?)
@@ -159,6 +160,7 @@ pianolower = \relative c {
     <<
         \new Voice {
             \voiceOne
+            \showStaffSwitch
             %\autochange cis'
             \tenor
         }
