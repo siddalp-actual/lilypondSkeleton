@@ -12,7 +12,7 @@
 %\include "articulate.ly"   % better midi dynamics
 \include "../peteMacs.ly"  % useful functions
 
-timeAndKey = { \key aes \major \time 3/4 }
+timeAndKey = { \key af \major \time 3/4 }
 bpm = 100
 verses = 4
 
@@ -193,7 +193,7 @@ sopranostaff = \new Staff
         \clef treble
         \timeAndKey
         \new Voice = "sopranovoice" {
-            \repeat volta 3 {
+            \repeat volta \verses {
                 \sopranoVoiceRefrain
             }
         }
