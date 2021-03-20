@@ -229,7 +229,7 @@ sopranostaff = \new Staff
         \unfoldRepeats
         %\articulate
         <<
-        \new pianostaff
+        \new Pianostaff
         \pianostaff
         >>
         \midi {
