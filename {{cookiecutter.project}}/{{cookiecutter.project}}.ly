@@ -16,10 +16,12 @@ timeAndKey = { \key af \major \time 3/4 }
 bpm = 100
 verses = 4
 
-sopranoVoiceRefrain = \relative c'' {
-    %\partial 4 aes4
+sopranoVoiceRefrain = \new Voice = "sopranovoicerefrain" {
+    \relative c'' {
+        %\partial 4 aes4
 
-    \bar "|."
+        \bar "|."
+    }
 }
 
 sopranoPianoVerse = \relative c' {
@@ -107,6 +109,7 @@ bass = \relative c {
 
 
 chorusLyrics = \lyrics {
+    \lyricsto "sopranovoicerefrain"
     % -- gives a - which doesn't eat a note, but may be printed
     % _ doesn't give a -, but does eat a note
     % __ prints _ but doesn't eat a note
@@ -191,15 +194,15 @@ pianostaff =
 sopranostaff = \new Staff
     <<
     \staffName "S"
+    \set Staff.midiInstrument = "tenor sax"
     \relative c'' {
         \clef treble
         \timeAndKey
-        \new Voice = "sopranovoice" {
-            \repeat volta \verses {
-                \sopranoVoiceRefrain
-            }
+        \repeat volta \verses {
+            \sopranoVoiceRefrain
         }
     }
+    \chorusLyrics
     >>
 
 
@@ -210,6 +213,7 @@ sopranostaff = \new Staff
     \score {
         %\articulate
         <<
+        %\sopranostaff
         \new PianoStaff
         \pianostaff
         >>
@@ -231,6 +235,7 @@ sopranostaff = \new Staff
         \unfoldRepeats
         %\articulate
         <<
+        %\sopranostaff
         \new Pianostaff
         \pianostaff
         >>
