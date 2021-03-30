@@ -109,10 +109,11 @@ bass = \relative c {
 
 
 chorusLyrics = \lyrics {
-    \lyricsto "sopranovoicerefrain"
+    \lyricsto "sopranovoicerefrain" {
     % -- gives a - which doesn't eat a note, but may be printed
     % _ doesn't give a -, but does eat a note
     % __ prints _ but doesn't eat a note
+    }
 }
 
 verseTune = \new Voice = "verseSoprano" \relative c'' {
@@ -236,7 +237,7 @@ sopranostaff = \new Staff
         %\articulate
         <<
         %\sopranostaff
-        \new Pianostaff
+        \new PianoStaff
         \pianostaff
         >>
         \midi {
