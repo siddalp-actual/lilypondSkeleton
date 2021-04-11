@@ -1,13 +1,18 @@
 STEM := {{cookiecutter.project}}
 
-all: $(STEM).midi $(STEM)\ -\ Piano.pdf 
+# Skeleton adds the '- Piano' suffix
+PDF := $(STEM)\ -\ Piano.pdf
 
-%.midi: %.ly
-	-rm *.notes  # - means ok to fail
+# first rule is the default, build everything
+all: $(STEM).midi $(PDF)
+
+# %.midi: %.ly
+$(STEM).midi: $(STEM).ly
+	-rm $(STEM)*.notes  # - means OK to fail
 	lilypond '$<'
 	-~/github/lilypondEventsProcessing/notes2midi.py
 
-$(STEM)\ -\ Piano.pdf: $(STEM).ly
+$(PDF): $(STEM).ly
 	lilypond '$<'
 
 %.wav: %.midi
