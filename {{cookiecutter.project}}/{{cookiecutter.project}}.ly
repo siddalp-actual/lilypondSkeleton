@@ -28,9 +28,14 @@ sopranoPianoVerse = \relative c' {
     \bar "||"
 }
 
+sopranoPianoRefrain = \relative c' {
+    \bar "||"
+}
+
 voltaLast = \markup \text "Fine"
 sopranoPiano = \relative c'' {
     \repeat volta \verses {
+        \sopranoPianoRefrain
         \sopranoPianoVerse
     }
     \alternative {
@@ -43,6 +48,10 @@ sopranoPiano = \relative c'' {
     \bar "|."
 }
 
+altoPianoRefrain = \relative c' {
+    \bar "||"
+}
+
 altoPianoVerse = \relative c' {
     \bar "||"
 }
@@ -50,6 +59,7 @@ altoPianoVerse = \relative c' {
 alto = \relative c' {
     \override Fingering.direction = #UP
     \repeat volta \verses {
+        \altoPianoRefrain
         \altoPianoVerse
     }
     \alternative {
@@ -64,6 +74,10 @@ alto = \relative c' {
 su = \change Staff = "up"
 sd = \change Staff = "down"
 
+tenorPianoRefrain = \relative c {
+    \bar "||"
+}
+
 tenorPianoVerse = \relative c {
     \bar "||"
 }
@@ -71,6 +85,7 @@ tenorPianoVerse = \relative c {
 tenor = \relative c' {
     \override Fingering.direction = #DOWN
     \repeat volta \verses {
+        \tenorPianoRefrain
         \tenorPianoVerse
     }
     \alternative {
@@ -90,12 +105,17 @@ tf =
     #}
 )
 
+bassPianoRefrain = \relative c {
+    \bar "||"
+}
+
 bassPianoVerse = \relative c {
     \bar "||"
 }
 
 bass = \relative c {
     \repeat volta \verses {
+        \bassPianoRefrain
         \bassPianoVerse
     }
     \alternative {
@@ -116,7 +136,7 @@ chorusLyrics = \lyrics {
     }
 }
 
-verseTune = \new Voice = "verseSoprano" \relative c'' {
+sopranoVoiceVerse = \new Voice = "verseSoprano" \relative c'' {
     \bar "|."
 }
 
@@ -201,6 +221,7 @@ sopranostaff = \new Staff
         \timeAndKey
         \repeat volta \verses {
             \sopranoVoiceRefrain
+            \sopranoVoiceVerse
         }
     }
     \chorusLyrics
@@ -214,7 +235,7 @@ sopranostaff = \new Staff
     \score {
         %\articulate
         <<
-        %\sopranostaff
+        %\sopranostaff  % DONT FORGET midi score BELOW
         \new PianoStaff
         \pianostaff
         >>
