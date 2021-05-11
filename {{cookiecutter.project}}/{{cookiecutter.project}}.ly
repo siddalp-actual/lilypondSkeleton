@@ -24,11 +24,11 @@ sopranoVoiceRefrain = \new Voice = "sopranovoicerefrain" {
     }
 }
 
-sopranoPianoVerse = \relative c' {
+sopranoPianoRefrain = \relative c' {
     \bar "||"
 }
 
-sopranoPianoRefrain = \relative c' {
+sopranoPianoVerse = \relative c' {
     \bar "||"
 }
 
