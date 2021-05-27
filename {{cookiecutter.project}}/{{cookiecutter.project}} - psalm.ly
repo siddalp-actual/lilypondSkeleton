@@ -230,7 +230,7 @@ vAfterLyrics =
 
 
 \book{
-    \bookOutputName "Psalm Easter 7 - Piano"
+    \bookOutputName "{{cookiecutter.project}} - Piano"
     %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
     %#'((Y-offset . 2))
     \score {
