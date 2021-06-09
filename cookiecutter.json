@@ -1,3 +1,4 @@
 {
-  "project": "this weeks hymn"
+  "project": "this weeks hymn",
+  "escaped_project": "{{ cookiecutter.project|replace(' ','\\ ') }}"
 }

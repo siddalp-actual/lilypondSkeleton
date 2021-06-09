@@ -1,4 +1,4 @@
-STEM := {{cookiecutter.project}}
+STEM := {{cookiecutter.escaped_project}}
 
 # Skeleton adds the '- Piano' suffix
 PDF := $(STEM)\ -\ Piano.pdf
