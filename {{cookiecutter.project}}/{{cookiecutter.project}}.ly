@@ -221,7 +221,7 @@ pianolower = \relative c {
     >>
 }
 
-pianostaff =
+pianostaff = \new PianoStaff
 <<
     \set PianoStaff.instrumentName = "Piano"
 
@@ -300,8 +300,7 @@ choirstaff = \new ChoirStaff
         %\articulate
         <<
         %\sopranostaff  % DONT FORGET midi score BELOW
-        \choirstaff
-        \new PianoStaff
+        %{ \choirstaff %}
         \pianostaff
         >>
         \layout {
@@ -323,7 +322,6 @@ choirstaff = \new ChoirStaff
         %\articulate
         <<
         %\sopranostaff
-        \new PianoStaff
         \pianostaff
         >>
         \midi {
