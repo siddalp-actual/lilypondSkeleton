@@ -136,12 +136,38 @@ chorusLyrics = \lyrics {
     }
 }
 
-sopranoVoiceVerse = \new Voice = "verseSoprano" \relative c'' {
+sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
+\relative c'' {
     \bar "|."
 }
 
-vOneLyrics = \lyrics {
-    \verse "1"
+sopranovOneLyrics = \lyrics {
+    \lyricsto "verseOneSoprano" {
+        \verse "1"
+    }
+}
+
+altoVoiceVerseOne = \new Voice = "verseOneAlto" \relative c' {
+    \bar "|."
+}
+
+altovOneLyrics = \lyrics {
+    \lyricsto "verseOneAlto" {
+        \verse "1"
+    }
+}
+
+bassVoiceVerseOne = \new Voice = "verseOneBass"
+%{ \transpose c c, { %}
+    \relative c' {
+        \bar "|."
+    }
+%}
+
+bassvOneLyrics = \lyrics {
+    \lyricsto "verseOneBass" {
+        \verse "1"
+    }
 }
 
 vTwoLyrics = \lyrics {
@@ -215,16 +241,54 @@ pianostaff =
 sopranostaff = \new Staff
     <<
     \staffName "S"
-    \set Staff.midiInstrument = "tenor sax"
+    \set Staff.midiInstrument = "treble sax"
     \relative c'' {
         \clef treble
         \timeAndKey
         \repeat volta \verses {
-            \sopranoVoiceRefrain
-            \sopranoVoiceVerse
+            %{ \sopranoVoiceRefrain %}
+            \sopranoVoiceVerseOne
         }
     }
     \chorusLyrics
+    \sopranovOneLyrics
+    >>
+
+altostaff = \new Staff
+    <<
+    \staffName "A"
+    \set Staff.midiInstrument = "alto sax"
+    \relative c'' {
+        \clef treble
+        \timeAndKey
+        \repeat volta \verses {
+            %{ \altoVoiceRefrain %}
+            \altoVoiceVerseOne
+        }
+    }
+    \altovOneLyrics
+    >>
+
+bassstaff = \new Staff
+    <<
+    \staffName "B"
+    \set Staff.midiInstrument = "tenor sax"
+    \relative c'' {
+        \clef "treble_8"
+        \timeAndKey
+        \repeat volta \verses {
+            %{ \bassVoiceRefrain %}
+            \bassVoiceVerseOne
+        }
+    }
+    \bassvOneLyrics
+    >>
+
+choirstaff = \new ChoirStaff
+    <<
+        \sopranostaff
+        \altostaff
+        \bassstaff
     >>
 
 
@@ -236,6 +300,7 @@ sopranostaff = \new Staff
         %\articulate
         <<
         %\sopranostaff  % DONT FORGET midi score BELOW
+        \choirstaff
         \new PianoStaff
         \pianostaff
         >>
