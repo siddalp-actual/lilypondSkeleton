@@ -147,6 +147,7 @@ pianoupper = \relative c'' {
     \set midiPanPosition = #0.75
     \set midiReverbLevel = #0
 
+    \override Staff.NoteHead.style = #'altdefault
     \clef treble
     \timeAndKey
     <<
@@ -164,6 +165,7 @@ pianoupper = \relative c'' {
 pianolower = \relative c {
     \set midiPanPosition = #-0.75
     \set midiReverbLevel = #0
+    \override Staff.NoteHead.style = #'altdefault
     \clef bass
     \timeAndKey
     <<
