@@ -241,7 +241,7 @@ pianostaff = \new PianoStaff
 sopranostaff = \new Staff
     <<
     \staffName "S"
-    \set Staff.midiInstrument = "treble sax"
+    \set Staff.midiInstrument = "soprano sax"
     \relative c'' {
         \clef treble
         \timeAndKey
@@ -305,10 +305,15 @@ choirstaff = \new ChoirStaff
         >>
         \layout {
             #(layout-set-staff-size 24)
+            ragged-right = ##f
+            ragged-last = ##f
+
 
             \context {
                 \Staff
                 \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
+                %{ \omit TimeSignature %}
+                %{ \omit KeySignature %}
             }
         %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
         %#'((Y-offset . 5))
@@ -316,12 +321,13 @@ choirstaff = \new ChoirStaff
     }
     \paper {
         annotate-spacing = ##f
+        %{ page-count = #1 %}
     }
     \score {
         \unfoldRepeats
         %\articulate
         <<
-        %\sopranostaff
+        %{ \choirstaff %}
         \pianostaff
         >>
         \midi {
