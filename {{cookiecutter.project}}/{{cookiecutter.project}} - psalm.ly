@@ -249,6 +249,10 @@ vAfterLyrics =
                 \Staff
                 \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
             }
+            \context {
+                \Score
+                \remove "Metronome_mark_engraver"
+            }
         %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
         %#'((Y-offset . 5))
         }
