@@ -10,9 +10,9 @@
 }
 
 %\include "articulate.ly"   % better midi dynamics
-\include "../peteMacs.ly"  % useful functions
+\include "../../peteMacs.ly"  % useful functions
 
-timeAndKey = { \key af \major \time 3/4 }
+timeAndKey = { \key g \minor \time 4/4 \numericTimeSignature}
 bpm = 100
 verses = 4
 
@@ -157,6 +157,16 @@ altovOneLyrics = \lyrics {
     }
 }
 
+tenorVoiceVerseOne = \new Voice = "verseOneTenor" \relative c' {
+    \bar "|."
+}
+
+tenorvOneLyrics = \lyrics {
+    \lyricsto "verseOneTenor" {
+        \verse "1"
+    }
+}
+
 bassVoiceVerseOne = \new Voice = "verseOneBass"
 %{ \transpose c c, { %}
     \relative c' {
@@ -269,6 +279,21 @@ altostaff = \new Staff
     \altovOneLyrics
     >>
 
+tenorstaff = \new Staff
+    <<
+    \staffName "T"
+    \set Staff.midiInstrument = "tenor sax"
+    \relative c' {
+        \clef "treble_8"
+        \timeAndKey
+        \repeat volta \verses {
+            %{ \tenorVoiceRefrain %}
+            \tenorVoiceVerseOne
+        }
+    }
+    \tenorvOneLyrics
+    >>
+
 bassstaff = \new Staff
     <<
     \staffName "B"
@@ -288,6 +313,7 @@ choirstaff = \new ChoirStaff
     <<
         \sopranostaff
         \altostaff
+        \tenorstaff
         \bassstaff
     >>
 
@@ -315,6 +341,12 @@ choirstaff = \new ChoirStaff
                 %{ \omit TimeSignature %}
                 %{ \omit KeySignature %}
             }
+
+            \context {
+                \Score
+                \remove "Metronome_mark_engraver"
+            }
+
         %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
         %#'((Y-offset . 5))
         }
