@@ -3,8 +3,9 @@
 
 \header {
   title = "{{cookiecutter.project}}"
+  opus = " "
   subtitle = " " % a bit more space
-  % composer = "J. S. Bach."
+  %{ composer = "J. S. Bach." %}
   % set tagline to false to remove the lilypond composing notice
   tagline = ##f
 }
@@ -127,6 +128,7 @@ bass = \relative c {
     \bar "|."
 }
 
+%=============================================================================
 
 chorusLyrics = \lyrics {
     \lyricsto "sopranovoicerefrain" {
@@ -138,7 +140,6 @@ chorusLyrics = \lyrics {
 
 sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
 \relative c'' {
-    \bar "|."
 }
 
 sopranovOneLyrics = \lyrics {
@@ -148,7 +149,6 @@ sopranovOneLyrics = \lyrics {
 }
 
 altoVoiceVerseOne = \new Voice = "verseOneAlto" \relative c' {
-    \bar "|."
 }
 
 altovOneLyrics = \lyrics {
@@ -158,7 +158,6 @@ altovOneLyrics = \lyrics {
 }
 
 tenorVoiceVerseOne = \new Voice = "verseOneTenor" \relative c' {
-    \bar "|."
 }
 
 tenorvOneLyrics = \lyrics {
@@ -170,7 +169,6 @@ tenorvOneLyrics = \lyrics {
 bassVoiceVerseOne = \new Voice = "verseOneBass"
 %{ \transpose c c, { %}
     \relative c' {
-        \bar "|."
     }
 %}
 
@@ -313,7 +311,7 @@ choirstaff = \new ChoirStaff
     <<
         \sopranostaff
         \altostaff
-        \tenorstaff
+        %{ \tenorstaff %}
         \bassstaff
     >>
 
