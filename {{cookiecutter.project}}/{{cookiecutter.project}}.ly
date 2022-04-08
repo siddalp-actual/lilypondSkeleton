@@ -254,12 +254,12 @@ sopranostaff = \new Staff
         \clef treble
         \timeAndKey
         \repeat volta \verses {
-            %{ \sopranoVoiceRefrain %}
-            \sopranoVoiceVerseOne
+            \sopranoVoiceRefrain
+            %{ \sopranoVoiceVerseOne %}
         }
     }
     \chorusLyrics
-    \sopranovOneLyrics
+    %{ \sopranovOneLyrics %}
     >>
 
 altostaff = \new Staff
@@ -336,6 +336,8 @@ choirstaff = \new ChoirStaff
             \context {
                 \Staff
                 \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
+                %{ \RemoveEmptyStaves
+                \override VerticalAxisGroup.remove-first = ##t %}
                 %{ \omit TimeSignature %}
                 %{ \omit KeySignature %}
             }
