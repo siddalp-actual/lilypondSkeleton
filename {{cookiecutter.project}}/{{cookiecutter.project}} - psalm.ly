@@ -10,7 +10,7 @@
 }
 
 %\include "articulate.ly"   % better midi dynamics
-\include "../peteMacs.ly"  % useful functions
+\include "../../peteMacs.ly"  % useful functions
 
 timeAndKey = { \key c \major \time 4/4 }
 bpm = 100
@@ -49,11 +49,9 @@ sopranoPiano = \relative c'' {
 }
 
 altoPianoRefrain = \relative c' {
-    \bar "||"
 }
 
 altoPianoVerse = \relative c' {
-    \bar "||"
 }
 
 alto = \relative c' {
@@ -68,18 +66,15 @@ alto = \relative c' {
         {
         }
     }
-    \bar"|."
 }
 
 su = \change Staff = "up"
 sd = \change Staff = "down"
 
 tenorPianoRefrain = \relative c' {
-    \bar "||"
 }
 
 tenorPianoVerse = \relative c' {
-    \bar "||"
 }
 
 tenor = \relative c' {
@@ -94,7 +89,6 @@ tenor = \relative c' {
         {
         }
     }
-    \bar"|."
 }
 
 
@@ -106,11 +100,10 @@ tf =
 )
 
 bassPianoRefrain = \relative c {
-    \bar "||"
 }
 
 bassPianoVerse = \relative c {
-    \bar "||"
+    \stemOff
 }
 
 bass = \relative c {
@@ -124,7 +117,6 @@ bass = \relative c {
         {  % Last
         }
     }
-    \bar "|."
 }
 
 
@@ -138,7 +130,6 @@ chorusLyrics = \lyrics {
 }
 
 sopranoVoiceVerse = \new Voice = "verseSoprano" \relative c'' {
-    \bar "|."
 }
 
 pianoupper = \relative c'' {

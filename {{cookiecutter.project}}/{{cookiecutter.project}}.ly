@@ -50,11 +50,9 @@ sopranoPiano = \relative c'' {
 }
 
 altoPianoRefrain = \relative c' {
-    \bar "||"
 }
 
 altoPianoVerse = \relative c' {
-    \bar "||"
 }
 
 alto = \relative c' {
@@ -69,18 +67,15 @@ alto = \relative c' {
         {
         }
     }
-    \bar"|."
 }
 
 su = \change Staff = "up"
 sd = \change Staff = "down"
 
 tenorPianoRefrain = \relative c {
-    \bar "||"
 }
 
 tenorPianoVerse = \relative c {
-    \bar "||"
 }
 
 tenor = \relative c' {
@@ -95,7 +90,6 @@ tenor = \relative c' {
         {
         }
     }
-    \bar"|."
 }
 
 
@@ -107,11 +101,9 @@ tf =
 )
 
 bassPianoRefrain = \relative c {
-    \bar "||"
 }
 
 bassPianoVerse = \relative c {
-    \bar "||"
 }
 
 bass = \relative c {
@@ -125,7 +117,6 @@ bass = \relative c {
         {  % Last
         }
     }
-    \bar "|."
 }
 
 %=============================================================================
