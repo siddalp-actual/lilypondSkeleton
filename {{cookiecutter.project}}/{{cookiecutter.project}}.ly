@@ -25,6 +25,10 @@ sopranoVoiceRefrain = \new Voice = "sopranovoicerefrain" {
     }
 }
 
+sopranoPianoIntro = \relative c' {
+    \bar "||"
+}
+
 sopranoPianoRefrain = \relative c' {
     \bar "||"
 }
@@ -35,6 +39,7 @@ sopranoPianoVerse = \relative c' {
 
 voltaLast = \markup \text "Fine"
 sopranoPiano = \relative c'' {
+    \sopranoPianoIntro
     \repeat volta \verses {
         \sopranoPianoRefrain
         \sopranoPianoVerse
@@ -49,6 +54,9 @@ sopranoPiano = \relative c'' {
     \bar "|."
 }
 
+altoPianoIntro = \relative c' {
+}
+
 altoPianoRefrain = \relative c' {
 }
 
@@ -57,6 +65,7 @@ altoPianoVerse = \relative c' {
 
 alto = \relative c' {
     \override Fingering.direction = #UP
+    \altoPianoIntro
     \repeat volta \verses {
         \altoPianoRefrain
         \altoPianoVerse
@@ -72,6 +81,9 @@ alto = \relative c' {
 su = \change Staff = "up"
 sd = \change Staff = "down"
 
+tenorPianoIntro = \relative c {
+}
+
 tenorPianoRefrain = \relative c {
 }
 
@@ -80,6 +92,7 @@ tenorPianoVerse = \relative c {
 
 tenor = \relative c' {
     \override Fingering.direction = #DOWN
+    \tenorPianoIntro
     \repeat volta \verses {
         \tenorPianoRefrain
         \tenorPianoVerse
@@ -100,6 +113,9 @@ tf =
     #}
 )
 
+bassPianoIntro = \relative c {
+}
+
 bassPianoRefrain = \relative c {
 }
 
@@ -107,6 +123,7 @@ bassPianoVerse = \relative c {
 }
 
 bass = \relative c {
+    \bassPianoIntro
     \repeat volta \verses {
         \bassPianoRefrain
         \bassPianoVerse
