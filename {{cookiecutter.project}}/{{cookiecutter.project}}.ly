@@ -5,7 +5,7 @@
   title = "{{cookiecutter.project}}"
   opus = " "
   subtitle = " " % a bit more space
-  %{ composer = "J. S. Bach." %}
+  % composer = "J. S. Bach." 
   % set tagline to false to remove the lilypond composing notice
   tagline = ##f
 }
@@ -13,8 +13,10 @@
 %\include "articulate.ly"   % better midi dynamics
 \include "../../peteMacs.ly"  % useful functions
 
-timeAndKey = { \key g \minor \time 4/4 \numericTimeSignature}
+timeAndKey = { \key a \major \time 4/4 \numericTimeSignature}
 bpm = 100
+pianoInstrument = "acoustic grand"
+% pianoInstrument = "acoustic guitar (nylon)"
 verses = 4
 
 sopranoVoiceRefrain = \new Voice = "sopranovoicerefrain" {
@@ -32,6 +34,10 @@ sopranoPianoIntro = \relative c' {
 sopranoPianoRefrain = \relative c' {
     \bar "||"
 }
+
+pianoDynamics = {
+    \override Hairpin.to-barline = ##f
+    }
 
 sopranoPianoVerse = \relative c' {
     \bar "||"
@@ -244,12 +250,13 @@ pianostaff = \new PianoStaff
     %\staffName "Piano"
     \new Staff = "up"
     <<
-        \set Staff.midiInstrument = "acoustic grand"
+        \set Staff.midiInstrument = \pianoInstrument
         \pianoupper
     >>
+    \new Dynamics \pianoDynamics
     \new Staff = "down"
     <<
-        \set Staff.midiInstrument = "acoustic grand"
+        \set Staff.midiInstrument = \pianoInstrument
         \pianolower
     >>
 >>
