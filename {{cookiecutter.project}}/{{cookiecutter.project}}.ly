@@ -46,16 +46,22 @@ sopranoPianoVerse = \relative c' {
 voltaLast = \markup \text "Fine"
 sopranoPiano = \relative c'' {
     \sopranoPianoIntro
-    \repeat volta \verses {
+    \tag #'withRepeat {
+        \repeat volta \verses {
+            \sopranoPianoRefrain
+            \sopranoPianoVerse
+        }
+        \alternative {
+            {
+            }
+            {
+                \set Score.repeatCommands = #(list(list 'volta voltaLast))
+            }
+        }
+    }
+    \tag #'noRepeat {
         \sopranoPianoRefrain
         \sopranoPianoVerse
-    }
-    \alternative {
-        {
-        }
-        {
-            \set Score.repeatCommands = #(list(list 'volta voltaLast))
-        }
     }
     \bar "|."
 }
@@ -72,15 +78,21 @@ altoPianoVerse = \relative c' {
 alto = \relative c' {
     \override Fingering.direction = #UP
     \altoPianoIntro
-    \repeat volta \verses {
+    \tag #'withRepeat {
+        \repeat volta \verses {
+            \altoPianoRefrain
+            \altoPianoVerse
+        }
+        \alternative {
+            {
+            }
+            {
+            }
+        }
+    }
+    \tag #'noRepeat {
         \altoPianoRefrain
         \altoPianoVerse
-    }
-    \alternative {
-        {
-        }
-        {
-        }
     }
 }
 
@@ -99,15 +111,21 @@ tenorPianoVerse = \relative c {
 tenor = \relative c' {
     \override Fingering.direction = #DOWN
     \tenorPianoIntro
-    \repeat volta \verses {
+    \tag #'withRepeat {
+        \repeat volta \verses {
+            \tenorPianoRefrain
+            \tenorPianoVerse
+        }
+        \alternative {
+            {
+            }
+            {
+            }
+        }
+    }
+    \tag #'noRepeat {
         \tenorPianoRefrain
         \tenorPianoVerse
-    }
-    \alternative {
-        {
-        }
-        {
-        }
     }
 }
 
@@ -130,15 +148,21 @@ bassPianoVerse = \relative c {
 
 bass = \relative c {
     \bassPianoIntro
-    \repeat volta \verses {
+    \tag #'withRepeat {
+        \repeat volta \verses {
+            \bassPianoRefrain
+            \bassPianoVerse
+        }
+        \alternative {
+            {  % 1 - 4
+            }
+            {  % Last
+            }
+        }
+    }
+    \tag #'noRepeat {
         \bassPianoRefrain
         \bassPianoVerse
-    }
-    \alternative {
-        {  % 1 - 4
-        }
-        {  % Last
-        }
     }
 }
 
@@ -215,11 +239,11 @@ pianoupper = \relative c'' {
     <<
         \new Voice {
             \voiceOne
-            \sopranoPiano
+            \keepWithTag #'noRepeat \sopranoPiano
         }
         \new Voice {
             \voiceTwo
-            \alto
+            \keepWithTag #'noRepeat \alto
         }
     >>
 }
@@ -234,11 +258,11 @@ pianolower = \relative c {
             \voiceOne
             \showStaffSwitch
             %\autochange cis'
-            \tenor
+            \keepWithTag #'noRepeat \tenor
         }
         \new Voice {
             \voiceTwo
-            \bass
+            \keepWithTag #'noRepeat \bass
         }        %\voiceTwo \bass
     >>
 }
@@ -326,7 +350,7 @@ choirstaff = \new ChoirStaff
     <<
         \sopranostaff
         \altostaff
-        %{ \tenorstaff %}
+        % \tenorstaff 
         \bassstaff
     >>
 
@@ -339,7 +363,7 @@ choirstaff = \new ChoirStaff
         %\articulate
         <<
         %\sopranostaff  % DONT FORGET midi score BELOW
-        %{ \choirstaff %}
+        % \choirstaff 
         \pianostaff
         >>
         \layout {
@@ -374,7 +398,7 @@ choirstaff = \new ChoirStaff
         \unfoldRepeats
         %\articulate
         <<
-        %{ \choirstaff %}
+        % \choirstaff 
         \pianostaff
         >>
         \midi {
