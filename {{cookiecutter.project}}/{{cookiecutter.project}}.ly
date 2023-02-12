@@ -173,6 +173,7 @@ chorusLyrics = \lyrics {
     % -- gives a - which doesn't eat a note, but may be printed
     % _ doesn't give a -, but does eat a note
     % __ prints _ but doesn't eat a note
+    \override LyricText.font-size = #-2
     }
 }
 
@@ -182,7 +183,10 @@ sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
 
 sopranovOneLyrics = \lyrics {
     \lyricsto "verseOneSoprano" {
-        \verse "1"
+       \override LyricText.font-size = #-2
+       % \override StanzaNumber.font-size = #-3
+       % \set stanza = "1st Sunday:"
+       \verse 1.
     }
 }
 
@@ -292,13 +296,20 @@ sopranostaff = \new Staff
     \relative c'' {
         \clef treble
         \timeAndKey
-        \repeat volta \verses {
+        \sopranoVoiceIntro
+        \tag #'withRepeat {
+            \repeat volta \verses {
+                \sopranoVoiceRefrain
+                % \sopranoVoiceVerseOne
+            }
+        }
+        \tag #'noRepeat {
             \sopranoVoiceRefrain
-            %{ \sopranoVoiceVerseOne %}
+            % \sopranoVoiceVerseOne
         }
     }
     \chorusLyrics
-    %{ \sopranovOneLyrics %}
+    % \sopranovOneLyrics 
     >>
 
 altostaff = \new Staff
@@ -348,10 +359,10 @@ bassstaff = \new Staff
 
 choirstaff = \new ChoirStaff
     <<
-        \sopranostaff
-        \altostaff
+        \keepWithTag #'noRepeat \sopranostaff
+        % \altostaff
         % \tenorstaff 
-        \bassstaff
+        % \bassstaff
     >>
 
 
@@ -375,8 +386,8 @@ choirstaff = \new ChoirStaff
             \context {
                 \Staff
                 \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
-                %{ \RemoveEmptyStaves
-                \override VerticalAxisGroup.remove-first = ##t %}
+                % \RemoveEmptyStaves
+                % \override VerticalAxisGroup.remove-first = ##t
                 %{ \omit TimeSignature %}
                 %{ \omit KeySignature %}
             }
@@ -392,7 +403,8 @@ choirstaff = \new ChoirStaff
     }
     \paper {
         annotate-spacing = ##f
-        %{ page-count = #1 %}
+        % system-separator-markup = \slashSeparator
+        % page-count = #1
     }
     \score {
         \unfoldRepeats
