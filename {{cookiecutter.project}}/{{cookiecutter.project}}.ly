@@ -186,7 +186,7 @@ sopranovOneLyrics = \lyrics {
        \override LyricText.font-size = #-2
        % \override StanzaNumber.font-size = #-3
        % \set stanza = "1st Sunday:"
-       \verse 1.
+       \verse "1"
     }
 }
 
