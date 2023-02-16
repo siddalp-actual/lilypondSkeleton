@@ -173,12 +173,15 @@ chorusLyrics = \lyrics {
     % -- gives a - which doesn't eat a note, but may be printed
     % _ doesn't give a -, but does eat a note
     % __ prints _ but doesn't eat a note
-    \override LyricText.font-size = #-2
+    % \override LyricText.font-size = #-2
     }
 }
 
+sopranoVoiceIntro = \relative c'' {}
+
 sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
 \relative c'' {
+    % \magnifyStaff #5/7
 }
 
 sopranovOneLyrics = \lyrics {
@@ -347,7 +350,8 @@ bassstaff = \new Staff
     \staffName "B"
     \set Staff.midiInstrument = "tenor sax"
     \relative c'' {
-        \clef "treble_8"
+        % \clef "treble_8"
+        \clef "bass"
         \timeAndKey
         \repeat volta \verses {
             %{ \bassVoiceRefrain %}
