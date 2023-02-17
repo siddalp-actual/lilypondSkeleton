@@ -303,16 +303,16 @@ sopranostaff = \new Staff
         \tag #'withRepeat {
             \repeat volta \verses {
                 \sopranoVoiceRefrain
-                % \sopranoVoiceVerseOne
+                \sopranoVoiceVerseOne
             }
         }
         \tag #'noRepeat {
             \sopranoVoiceRefrain
-            % \sopranoVoiceVerseOne
+            \sopranoVoiceVerseOne
         }
     }
     \chorusLyrics
-    % \sopranovOneLyrics 
+    \sopranovOneLyrics 
     >>
 
 altostaff = \new Staff
@@ -322,7 +322,13 @@ altostaff = \new Staff
     \relative c'' {
         \clef treble
         \timeAndKey
-        \repeat volta \verses {
+        \tag #'withRepeat {
+            \repeat volta \verses {
+                %{ \altoVoiceRefrain %}
+                \altoVoiceVerseOne
+            }
+        }
+        \tag #'noRepeat {
             %{ \altoVoiceRefrain %}
             \altoVoiceVerseOne
         }
@@ -337,7 +343,13 @@ tenorstaff = \new Staff
     \relative c' {
         \clef "treble_8"
         \timeAndKey
-        \repeat volta \verses {
+        \tag #'withRepeat {
+            \repeat volta \verses {
+                %{ \tenorVoiceRefrain %}
+                \tenorVoiceVerseOne
+            }
+        }
+        \tag #'noRepeat {
             %{ \tenorVoiceRefrain %}
             \tenorVoiceVerseOne
         }
@@ -353,7 +365,13 @@ bassstaff = \new Staff
         % \clef "treble_8"
         \clef "bass"
         \timeAndKey
-        \repeat volta \verses {
+        \tag #'withRepeat {
+            \repeat volta \verses {
+                %{ \bassVoiceRefrain %}
+                \bassVoiceVerseOne
+            }
+        }
+        \tag #'noRepeat {
             %{ \bassVoiceRefrain %}
             \bassVoiceVerseOne
         }
@@ -364,9 +382,9 @@ bassstaff = \new Staff
 choirstaff = \new ChoirStaff
     <<
         \keepWithTag #'noRepeat \sopranostaff
-        % \altostaff
-        % \tenorstaff 
-        % \bassstaff
+        % \keepWithTag #'noRepeat \altostaff
+        % \keepWithTag #'noRepeat \tenorstaff 
+        % \keepWithTag #'noRepeat \bassstaff
     >>
 
 
@@ -385,7 +403,7 @@ choirstaff = \new ChoirStaff
             #(layout-set-staff-size 24)
             ragged-right = ##f
             ragged-last = ##f
-
+            % indent = #5  % mm
 
             \context {
                 \Staff
