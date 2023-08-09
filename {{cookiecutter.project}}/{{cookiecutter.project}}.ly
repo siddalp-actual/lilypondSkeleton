@@ -166,6 +166,35 @@ bass = \relative c {
     }
 }
 
+bassPedOrgIntro = \relative c {
+}
+
+bassPedOrgRefrain = \relative c {
+}
+
+bassPedOrgVerse = \relative c {
+}
+
+organPed = \relative c {
+    \bassPedOrgIntro
+    \tag #'withRepeat {
+        \repeat volta \verses {
+            \bassPedOrgRefrain
+            \bassPedOrgVerse
+        }
+        \alternative {
+            {  % 1 - 4
+            }
+            {  % Last
+            }
+        }
+    }
+    \tag #'noRepeat {
+        \bassPedOrgRefrain
+        \bassPedOrgVerse
+    }
+}
+
 %=============================================================================
 
 chorusLyrics = \lyrics {
@@ -274,6 +303,20 @@ pianolower = \relative c {
     >>
 }
 
+pedalorgan = \relative c {
+    \set midiPanPosition = #-0.75
+    \set midiReverbLevel = #0
+    \clef bass
+    \timeAndKey
+    <<
+        \new Voice {
+            % \showStaffSwitch
+            %\autochange cis'
+            \keepWithTag #'noRepeat \organPed
+        }
+    >>
+}
+
 pianostaff = \new PianoStaff
 <<
     \set PianoStaff.instrumentName = "Piano"
@@ -289,6 +332,13 @@ pianostaff = \new PianoStaff
     <<
         \set Staff.midiInstrument = \pianoInstrument
         \pianolower
+    >>
+    \new Staff = "pedal"
+    <<
+        \clef "bass"
+        \timeAndKey
+        \set Staff.midiInstrument = \pianoInstrument
+        \pedalorgan
     >>
 >>
 
