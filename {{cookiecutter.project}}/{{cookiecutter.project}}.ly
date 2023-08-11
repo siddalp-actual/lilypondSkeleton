@@ -143,7 +143,11 @@ bassPianoIntro = \relative c {
 bassPianoRefrain = \relative c {
 }
 
+bassline = \relative c {
+}
+
 bassPianoVerse = \relative c {
+    \bassline
 }
 
 bass = \relative c {
@@ -173,6 +177,7 @@ bassPedOrgRefrain = \relative c {
 }
 
 bassPedOrgVerse = \relative c {
+    \bassline
 }
 
 organPed = \relative c {
@@ -296,10 +301,10 @@ pianolower = \relative c {
             %\autochange cis'
             \keepWithTag #'noRepeat \tenor
         }
-        \new Voice {
+        \tag #'noPedal \new Voice {
             \voiceTwo
             \keepWithTag #'noRepeat \bass
-        }        %\voiceTwo \bass
+        }    
     >>
 }
 
@@ -312,7 +317,7 @@ pedalorgan = \relative c {
         \new Voice {
             % \showStaffSwitch
             %\autochange cis'
-            \keepWithTag #'noRepeat \organPed
+            \tag #'withPedal \organPed
         }
     >>
 }
@@ -333,7 +338,10 @@ pianostaff = \new PianoStaff
         \set Staff.midiInstrument = \pianoInstrument
         \pianolower
     >>
-    \new Staff = "pedal"
+    \new Staff = "pedal" \with {
+        \RemoveAllEmptyStaves
+        \override VerticalAxisGroup.remove-layer = 1
+    }
     <<
         \clef "bass"
         \timeAndKey
@@ -439,6 +447,43 @@ choirstaff = \new ChoirStaff
 
 
 \book{
+    \bookOutputName "{{cookiecutter.project}} - Organ"
+    %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
+    %#'((Y-offset . 2))
+    \score {
+        %\articulate
+        <<
+        %\sopranostaff  % DONT FORGET midi score BELOW
+        % \choirstaff
+        \keepWithTag #'(withPedal noRepeat) \pianostaff
+        >>
+        \layout {
+            #(layout-set-staff-size 24)
+            ragged-right = ##f
+            ragged-last = ##f
+            % indent = #5  % mm
+
+            \context {
+                \Staff
+                \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
+                % \RemoveEmptyStaves
+                % \override VerticalAxisGroup.remove-first = ##t
+                %{ \omit TimeSignature %}
+                %{ \omit KeySignature %}
+            }
+
+            \context {
+                \Score
+                \remove "Metronome_mark_engraver"
+            }
+
+        %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
+        %#'((Y-offset . 5))
+        }
+    }
+}
+
+\book{
     \bookOutputName "{{cookiecutter.project}} - Piano"
     %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
     %#'((Y-offset . 2))
@@ -447,7 +492,7 @@ choirstaff = \new ChoirStaff
         <<
         %\sopranostaff  % DONT FORGET midi score BELOW
         % \choirstaff 
-        \pianostaff
+        \keepWithTag #'(noPedal noRepeat) \pianostaff
         >>
         \layout {
             #(layout-set-staff-size 24)
