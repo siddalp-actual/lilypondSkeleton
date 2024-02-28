@@ -220,10 +220,10 @@ sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
 
 sopranovOneLyrics = \lyrics {
     \lyricsto "verseOneSoprano" {
-       \override LyricText.font-size = #-2
-       % \override StanzaNumber.font-size = #-3
-       % \set stanza = "1st Sunday:"
-       \verse "1"
+        \override LyricText.font-size = #-2
+        % \override StanzaNumber.font-size = #-3
+        % \set stanza = "1st Sunday:"
+        \verse "1"
     }
 }
 
@@ -258,7 +258,11 @@ bassvOneLyrics = \lyrics {
 }
 
 vTwoLyrics = \lyrics {
-    \verse "2"
+    \lyricsto "verseOneSoprano" {
+        \override LyricText.font-size = #-2
+        % \override StanzaNumber.font-size = #-3
+        \verse "2"
+    }
 }
 
 vThreeLyrics = \lyrics {
@@ -455,7 +459,7 @@ choirstaff = \new ChoirStaff
         <<
         %\sopranostaff  % DONT FORGET midi score BELOW
         % \choirstaff
-        \keepWithTag #'(withPedal noRepeat) \pianostaff
+        % \keepWithTag #'(withPedal noRepeat) \pianostaff
         >>
         \layout {
             #(layout-set-staff-size 24)

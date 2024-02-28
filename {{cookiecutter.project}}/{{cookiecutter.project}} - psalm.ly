@@ -35,7 +35,9 @@ sopranoPianoVerse = \relative c'' {
 voltaLast = \markup \text "Fine"
 sopranoPiano = \relative c'' {
     \repeat volta \verses {
+        \tempo 4=\bpm
         \sopranoPianoRefrain
+        \tempo 4=200
         \sopranoPianoVerse
     }
     \alternative {
