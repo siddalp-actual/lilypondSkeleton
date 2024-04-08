@@ -1,35 +1,50 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[a4paper, fontsize=12pt]{article}
 
-\usepackage{fullpage}
+\usepackage[a4paper,
+            %top=1.5cm,
+            %bottom=1.0cm,
+            %left=2.5cm,
+            %right=2.0cm
+            ]{geometry}
 
 \usepackage{fontspec}
 \usepackage{libertine}
+\usepackage[cleantmp=true]{lyluatex}
+%\setluaoption{ly}{staffsize}{18}
 
-\usepackage[autocompile]{gregoriotex}
-
-\title{ {{cookiecutter.project}} }
-\date{}
-\author{}
+\usepackage{fancyhdr} % move stuff eg pagenumber
+\usepackage{multicol}
+%\usepackage[autocompile]{gregoriotex}
+\usepackage{enumitem} % fancy list item bullets - see Verse n: below
+\usepackage{array}
+%\usepackage{graphics}
 
 \begin{document}
-\maketitle
+\setlength{\headheight}{15pt}.
+\fancyhf{}
+\fancyhead[RO,RE]{\thepage} % Right Odd, Right Even 
+\renewcommand{\headrulewidth}{0pt}
+\thispagestyle{fancy} % from fancyhdr
+%\setcounter{page}{17}
+\subsection*{7\textsuperscript{th} Jan 2024: Epiphany}
+%\setluaoption{ly}{insert}{fullpage}
+\lilypondfile[fragment,quote=false,staffsize=20]{ {{cookiecutter.project}} }
+% \begin{multicols}{2}
+% \begin{tabular}{>{\centering\arraybackslash}p{6cm}}
+% row one \\
+% row nine-hundred and ninety-nine \\
+% \end{tabular}
+\begin{enumerate}[label=\textbf{Verse \arabic*:}, left=0cm .. 2cm] % think tab-stops
+% \DrawEnumitemLabel%
+\item%
+%O God, give your judgement \`{}to the king,\\
+%to a king's \`{}son your justice,\\
+\end{enumerate}
 
-\grechangestyle{abovelinestext}{\begin{small}\begin{bfseries}}[\end{bfseries}\end{small}]
-%\gresetheadercapture{name}{section}{}
-%\gresetheadercapture{commentary}{grecommentary[0.2cm]}{}
-%\gregorioscore{ {{cookiecutter.project}}.gabc }
-\grecommentary{<source>}
-\greannotation{<mode>}
-\gabcsnippet{(c4)
-Me(d)di(e)a(f) vi(g)ta(fe..) *(,)
-}
-
-
-%\gresetheadercapture{name}{section}{}
-%\gresetheadercapture{commentary}{grecommentary[0.2cm]}{}
-%\gregorioscore{SolaTenes}
-
-%\gresetheadercapture{name}{section}{}
-%\gresetheadercapture{commentary}{grecommentary[0.2cm]}{}
-%\gregorioscore{TuEsGloria}
+\subsubsection*{Gospel Acclamation}
+\quote{We saw his star \`{}as it rose\\
+and have \`{}come to do the \`{}Lord homage.}
+% \end{multicols}
+%\subsection{ Insert a Fragment }
+%\lilypond[fragment]{a' b' c'}
 \end{document}
