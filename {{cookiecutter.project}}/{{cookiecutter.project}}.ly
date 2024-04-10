@@ -61,6 +61,13 @@ sopranoPiano = \relative c'' {
     }
     \tag #'noRepeat {
         \sopranoPianoRefrain
+        %{ % make the next \break add extra vertical offset 
+	    \override
+            Score
+            .NonMusicalPaperColumn
+            .line-break-system-details = #'((extra-offset . (0 . 15)))
+	\break
+        %}
         \sopranoPianoVerse
     }
     \bar "|."
@@ -202,7 +209,7 @@ organPed = \relative c {
 
 %=============================================================================
 
-chorusLyrics = \lyrics {
+chorusLyrics = \context Lyrics = "topwords" {
     \lyricsto "sopranovoicerefrain" {
     % -- gives a - which doesn't eat a note, but may be printed
     % _ doesn't give a -, but does eat a note
@@ -218,7 +225,14 @@ sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
     % \magnifyStaff #5/7
 }
 
-sopranovOneLyrics = \lyrics {
+sopranoIntroLyrics = \new Lyrics = "topwords" {
+    \lyricsto "introSoprano" {
+        \override LyricText.font-size = #-2
+    }
+
+}
+
+sopranovOneLyrics = \context Lyrics = "topwords" {
     \lyricsto "verseOneSoprano" {
         \override LyricText.font-size = #-2
         % \override StanzaNumber.font-size = #-3
@@ -257,6 +271,7 @@ bassvOneLyrics = \lyrics {
     }
 }
 
+% vTwo creates a new Lyrics context which is a line below "topwords"
 vTwoLyrics = \lyrics {
     \lyricsto "verseOneSoprano" {
         \override LyricText.font-size = #-2
