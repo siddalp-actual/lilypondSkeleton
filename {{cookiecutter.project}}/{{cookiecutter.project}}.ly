@@ -547,7 +547,7 @@ choirstaff = \new ChoirStaff
         %\articulate
         <<
         % \choirstaff 
-        \pianostaff
+        \keepWithTag #'(noPedal noRepeat) \pianostaff
         >>
         \midi {
             \tempo 4 = \bpm
