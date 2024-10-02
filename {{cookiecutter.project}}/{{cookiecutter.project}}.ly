@@ -39,8 +39,12 @@ pianoDynamics = {
     \override Hairpin.to-barline = ##f
     }
 
+sopranoVerseNotes = \relative c' {
+    % \magnifyStaff #5/7
+}
+
 sopranoPianoVerse = \relative c' {
-    \bar "||"
+    \sopranoVerseNotes
 }
 
 voltaLast = \markup \text "Fine"
@@ -79,7 +83,12 @@ altoPianoIntro = \relative c' {
 altoPianoRefrain = \relative c' {
 }
 
+altoVerseNotes = \relative c' {
+    % \magnifyStaff #5/7
+}
+
 altoPianoVerse = \relative c' {
+    \altoVerseNotes
 }
 
 alto = \relative c' {
@@ -112,7 +121,13 @@ tenorPianoIntro = \relative c {
 tenorPianoRefrain = \relative c {
 }
 
+tenorVerseNotes = 
+\relative c' {
+    % \magnifyStaff #5/7
+}
+
 tenorPianoVerse = \relative c {
+    \tenorVerseNotes
 }
 
 tenor = \relative c' {
@@ -150,7 +165,15 @@ bassPianoIntro = \relative c {
 bassPianoRefrain = \relative c {
 }
 
+bassVerseNotes =
+%{ \transpose c c, { %}
+    \relative c' {
+        % \magnifyStaff #5/7
+    }
+%}
+
 bassline = \relative c {
+    \bassVerseNotes
 }
 
 bassPianoVerse = \relative c {
@@ -220,10 +243,7 @@ chorusLyrics = \context Lyrics = "topwords" {
 
 sopranoVoiceIntro = \relative c'' {}
 
-sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
-\relative c'' {
-    % \magnifyStaff #5/7
-}
+sopranoVoiceVerseOne = \new Voice = "verseOneSoprano" \sopranoVerseNotes
 
 sopranoIntroLyrics = \new Lyrics = "topwords" {
     \lyricsto "introSoprano" {
@@ -241,8 +261,7 @@ sopranovOneLyrics = \context Lyrics = "topwords" {
     }
 }
 
-altoVoiceVerseOne = \new Voice = "verseOneAlto" \relative c' {
-}
+altoVoiceVerseOne = \new Voice = "verseOneAlto" \altoVerseNotes
 
 altovOneLyrics = \lyrics {
     \lyricsto "verseOneAlto" {
@@ -250,8 +269,7 @@ altovOneLyrics = \lyrics {
     }
 }
 
-tenorVoiceVerseOne = \new Voice = "verseOneTenor" \relative c' {
-}
+tenorVoiceVerseOne = \new Voice = "verseOneTenor" \tenorVerseNotes
 
 tenorvOneLyrics = \lyrics {
     \lyricsto "verseOneTenor" {
@@ -259,11 +277,7 @@ tenorvOneLyrics = \lyrics {
     }
 }
 
-bassVoiceVerseOne = \new Voice = "verseOneBass"
-%{ \transpose c c, { %}
-    \relative c' {
-    }
-%}
+bassVoiceVerseOne = \new Voice = "verseOneBass" \bassVerseNotes
 
 bassvOneLyrics = \lyrics {
     \lyricsto "verseOneBass" {
