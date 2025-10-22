@@ -243,53 +243,52 @@ chorusLyrics = \context Lyrics = "topwords" {
 
 sopranoVoiceIntro = \relative c'' {}
 
-sopranoVoiceVerseOne = \new Voice = "verseOneSoprano" \sopranoVerseNotes
+sopranoVoiceVerseOne = \new Voice = "verseOneSoprano" 
+    \sopranoVerseNotes
+    % \relative c'' {}
 
 sopranoIntroLyrics = \new Lyrics = "topwords" {
     \lyricsto "introSoprano" {
         \override LyricText.font-size = #-2
     }
-
 }
 
 sopranovOneLyrics = \context Lyrics = "topwords" {
     \lyricsto "verseOneSoprano" {
         \override LyricText.font-size = #-2
         % \override StanzaNumber.font-size = #-3
+        % \verse "1"  % macro to do "Verse arg"
         % \set stanza = "1st Sunday:"
     }
 }
 
-altoVoiceVerseOne = \new Voice = "verseOneAlto" \altoVerseNotes
+altoVoiceVerseOne = \new Voice = "verseOneAlto" 
+    \altoVerseNotes
+    % \relative c' {}
 
 altovOneLyrics = \lyrics {
     \lyricsto "verseOneAlto" {
         \override LyricText.font-size = #-2
-        % \override StanzaNumber.font-size = #-3
-        % \set stanza = "1st Sunday:"
-        \verse "1"
     }
 }
 
-tenorVoiceVerseOne = \new Voice = "verseOneTenor" \tenorVerseNotes
+tenorVoiceVerseOne = \new Voice = "verseOneTenor" 
+    \tenorVerseNotes
+    % \relative c' {}
 
 tenorvOneLyrics = \lyrics {
     \lyricsto "verseOneTenor" {
         \override LyricText.font-size = #-2
-        % \override StanzaNumber.font-size = #-3
-        % \set stanza = "1st Sunday:"
-        \verse "1"
     }
 }
 
-bassVoiceVerseOne = \new Voice = "verseOneBass" \bassVerseNotes
+bassVoiceVerseOne = \new Voice = "verseOneBass" 
+    \bassVerseNotes
+    % \relative c {}
 
 bassvOneLyrics = \lyrics {
     \lyricsto "verseOneBass" {
         \override LyricText.font-size = #-2
-        % \override StanzaNumber.font-size = #-3
-        % \set stanza = "1st Sunday:"
-        \verse "1"
     }
 }
 
