@@ -5,7 +5,7 @@
   title = "{{cookiecutter.project}}"
   opus = " "
   subtitle = " " % a bit more space
-  % composer = "J. S. Bach." 
+  % composer = "J. S. Bach."
   % set tagline to false to remove the lilypond composing notice
   tagline = ##f
 }
@@ -19,12 +19,27 @@ pianoInstrument = "acoustic grand"
 % pianoInstrument = "acoustic guitar (nylon)"
 verses = 4
 
+\markup sectionStyle = \markup \bold \tiny \etc
+\markup directionStyle = \markup \italic \tiny \etc
+
 sopranoVoiceRefrain = \new Voice = "sopranovoicerefrain" {
     \relative c'' {
         %\partial 4 aes4
 
         \bar "|."
     }
+}
+
+guitarChordNames = \chordmode {
+    % d2 d:/cs | % Intro
+
+    % Refrain
+    % \repeat volta 2 {
+        % b2:m a | a:/cs d | g d | g d | g a:/cs | g d4 d:/cs |
+    % }
+
+    % Verse
+    % b2:m a | g d4 d:/cs | b2:m b:/a | a2. a4:/cs |
 }
 
 sopranoPianoIntro = \relative c' {
@@ -37,7 +52,7 @@ sopranoPianoRefrain = \relative c' {
 
 pianoDynamics = {
     \override Hairpin.to-barline = ##f
-    }
+}
 
 sopranoVerseNotes = \relative c' {
     % \magnifyStaff #5/7
@@ -65,7 +80,7 @@ sopranoPiano = \relative c'' {
     }
     \tag #'noRepeat {
         \sopranoPianoRefrain
-        %{ % make the next \break add extra vertical offset 
+        %{ % make the next \break add extra vertical offset
 	    \override
             Score
             .NonMusicalPaperColumn
@@ -121,7 +136,7 @@ tenorPianoIntro = \relative c {
 tenorPianoRefrain = \relative c {
 }
 
-tenorVerseNotes = 
+tenorVerseNotes =
 \relative c' {
     % \magnifyStaff #5/7
 }
@@ -243,7 +258,7 @@ chorusLyrics = \context Lyrics = "topwords" {
 
 sopranoVoiceIntro = \relative c'' {}
 
-sopranoVoiceVerseOne = \new Voice = "verseOneSoprano" 
+sopranoVoiceVerseOne = \new Voice = "verseOneSoprano"
     \sopranoVerseNotes
     % \relative c'' {}
 
@@ -262,7 +277,7 @@ sopranovOneLyrics = \context Lyrics = "topwords" {
     }
 }
 
-altoVoiceVerseOne = \new Voice = "verseOneAlto" 
+altoVoiceVerseOne = \new Voice = "verseOneAlto"
     \altoVerseNotes
     % \relative c' {}
 
@@ -272,7 +287,7 @@ altovOneLyrics = \lyrics {
     }
 }
 
-tenorVoiceVerseOne = \new Voice = "verseOneTenor" 
+tenorVoiceVerseOne = \new Voice = "verseOneTenor"
     \tenorVerseNotes
     % \relative c' {}
 
@@ -282,7 +297,7 @@ tenorvOneLyrics = \lyrics {
     }
 }
 
-bassVoiceVerseOne = \new Voice = "verseOneBass" 
+bassVoiceVerseOne = \new Voice = "verseOneBass"
     \bassVerseNotes
     % \relative c {}
 
@@ -344,7 +359,7 @@ pianolower = \relative c {
         \tag #'noPedal \new Voice {
             \voiceTwo
             \keepWithTag #'noRepeat \bass
-        }    
+        }
     >>
 }
 
@@ -364,7 +379,7 @@ pedalorgan = \relative c {
 
 pianostaff = \new PianoStaff
 <<
-    \set PianoStaff.instrumentName = "Piano"
+    % \set PianoStaff.instrumentName = "Piano"
 
     %\staffName "Piano"
     \new Staff = "up"
@@ -392,7 +407,7 @@ pianostaff = \new PianoStaff
 
 sopranostaff = \new Staff
     <<
-    \staffName "S"
+    % \staffName "S"
     \set Staff.midiInstrument = "soprano sax"
     \relative c'' {
         \clef treble
@@ -410,7 +425,7 @@ sopranostaff = \new Staff
         }
     }
     \chorusLyrics
-    \sopranovOneLyrics 
+    \sopranovOneLyrics
     >>
 
 altostaff = \new Staff
@@ -481,10 +496,17 @@ choirstaff = \new ChoirStaff
     <<
         \keepWithTag #'noRepeat \sopranostaff
         % \keepWithTag #'noRepeat \altostaff
-        % \keepWithTag #'noRepeat \tenorstaff 
+        % \keepWithTag #'noRepeat \tenorstaff
         % \keepWithTag #'noRepeat \bassstaff
     >>
 
+guitar = \new ChordNames {
+    \set Staff.midiInstrument = "acoustic guitar (nylon)"
+    \override ChordName.font-family = #'roman
+    \override ChordName.font-size = #-2
+    % \override ChordName.font-series = #'bold
+    \guitarChordNames
+}
 
 \book{
     \bookOutputName "{{cookiecutter.project}} - Organ"
@@ -523,17 +545,21 @@ choirstaff = \new ChoirStaff
     }
 }
 
+theMusic =
+<<
+% \guitar
+%\sopranostaff
+% \choirstaff
+\keepWithTag #'(noPedal noRepeat) \pianostaff
+>>
+
 \book{
     \bookOutputName "{{cookiecutter.project}} - Piano"
     %\overrideProperty Score.NonMusicalPaperColumn.line-break-system-details
     %#'((Y-offset . 2))
     \score {
         %\articulate
-        <<
-        %\sopranostaff  % DONT FORGET midi score BELOW
-        % \choirstaff 
-        \keepWithTag #'(noPedal noRepeat) \pianostaff
-        >>
+        \theMusic
         \layout {
             #(layout-set-staff-size 24)
             ragged-right = ##f
@@ -561,15 +587,13 @@ choirstaff = \new ChoirStaff
     \paper {
         annotate-spacing = ##f
         % system-separator-markup = \slashSeparator
+        left-margin = #15
         % page-count = #1
     }
     \score {
         \unfoldRepeats
         %\articulate
-        <<
-        % \choirstaff 
-        \keepWithTag #'(noPedal noRepeat) \pianostaff
-        >>
+        \theMusic
         \midi {
             \tempo 4 = \bpm
         }
