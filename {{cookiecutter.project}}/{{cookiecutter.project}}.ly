@@ -1,4 +1,4 @@
-\version "2.22.2"
+\version "2.24.0"
 \language "english"
 
 \header {
@@ -181,11 +181,9 @@ bassPianoRefrain = \relative c {
 }
 
 bassVerseNotes =
-%{ \transpose c c, { %}
-    \relative c' {
-        % \magnifyStaff #5/7
-    }
-%}
+\relative c' {
+    % \magnifyStaff #5/7
+}
 
 bassline = \relative c {
     \bassVerseNotes
@@ -312,7 +310,7 @@ vTwoLyrics = \lyrics {
     \lyricsto "verseOneSoprano" {
         \override LyricText.font-size = #-2
         % \override StanzaNumber.font-size = #-3
-        \verse "2"
+        % \verse "2"
     }
 }
 
@@ -528,7 +526,7 @@ guitar = \new ChordNames {
             \context {
                 \Staff
                 \override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #1
-                % \RemoveEmptyStaves
+                % \RemoveAllEmptyStaves
                 % \override VerticalAxisGroup.remove-first = ##t
                 %{ \omit TimeSignature %}
                 %{ \omit KeySignature %}
@@ -564,7 +562,7 @@ theMusic =
             #(layout-set-staff-size 24)
             ragged-right = ##f
             ragged-last = ##f
-            % indent = #5  % mm
+            indent = #5  % mm
 
             \context {
                 \Staff
