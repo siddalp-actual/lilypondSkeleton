@@ -47,7 +47,10 @@ sopranoPianoIntro = \relative c' {
 }
 
 sopranoPianoRefrain = \relative c' {
-    \bar "||"
+    \section
+    \sectionLabel \markup \sectionStyle "Refrain"
+
+    % \bar "||"
 }
 
 pianoDynamics = {
@@ -56,6 +59,9 @@ pianoDynamics = {
 
 sopranoVerseNotes = \relative c' {
     % \magnifyStaff #5/7
+    \section
+    \sectionLabel \markup \sectionStyle {#(number->string verses) "Verses"}
+
 }
 
 sopranoPianoVerse = \relative c' {
@@ -404,8 +410,15 @@ pianostaff = \new PianoStaff
 >>
 
 sopranostaff = \new Staff
+    \with {
+        \dynamicUp
+        \override DynamicText.font-size = #-2
+        % \override TimeSignature.style = #'single-digit
+    }
     <<
     % \staffName "S"
+    % \overrideTimeSignatureSettings 4/4 1/4 1,1,1,1 #'() % only beam for crotchet beats
+    % \overrideTimeSignatureSettings signature baseMomentFraction beatStructure beanExceptions
     \set Staff.midiInstrument = "soprano sax"
     \relative c'' {
         \clef treble
@@ -427,6 +440,10 @@ sopranostaff = \new Staff
     >>
 
 altostaff = \new Staff
+    \with {
+        \dynamicUp
+        \override DynamicText.font-size = #-2
+    }
     <<
     \staffName "A"
     \set Staff.midiInstrument = "alto sax"
@@ -448,6 +465,10 @@ altostaff = \new Staff
     >>
 
 tenorstaff = \new Staff
+    \with {
+        \dynamicUp
+        \override DynamicText.font-size = #-2
+    }
     <<
     \staffName "T"
     \set Staff.midiInstrument = "tenor sax"
@@ -469,6 +490,10 @@ tenorstaff = \new Staff
     >>
 
 bassstaff = \new Staff
+    \with {
+        \dynamicUp
+        \override DynamicText.font-size = #-2
+    }
     <<
     \staffName "B"
     \set Staff.midiInstrument = "tenor sax"
